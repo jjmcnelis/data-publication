@@ -140,6 +140,8 @@ s3_response = s3.list_objects_v2(
 
 These instructions assume that you have an existing SRV account with access keys installed in your local AWS credentials file, which is typically stored at this path: `~/.aws/credentials`.
 
+This example method requires Python 3 and [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html) python package.
+
 ### MACOS/LINUX
 
 Automate the periodic retrieval and installation of your PODAAC-managed s3 access keys using a local cron job.
@@ -147,10 +149,12 @@ Automate the periodic retrieval and installation of your PODAAC-managed s3 acces
 Start your local crontab editor with `crontab -e`. Add the following line; then save the file.
 
 ```
-30 0 * * * python3 $HOME/.aws/rotate_upload_access_keys.py SRV-podaac-dev-swot
+30 0 * * * python3 $HOME/.aws/rotate_upload_access_keys.py SRV-podaac-dev-swot >> $HOME/.aws/rotate_upload_access_keys.log
 ```
 
-This example crontab entry executes a python script once per day at 12:30 AM local time. The script checks for new access keys for the `SRV-podaac-dev-swot` account and updates the corresponding entry inside ~/.aws/credentials when necessary.
+This example crontab entry executes [a python script](rotate_upload_access_keys.py) once per day at 12:30 AM local time. The script checks for new access keys for the `SRV-podaac-dev-swot` account and updates the corresponding entry inside ~/.aws/credentials when necessary.
+
+Output from each run is piped to a log file here: `$HOME/.aws/rotate_upload_access_keys.log`
 
 ### WINDOWS
 
