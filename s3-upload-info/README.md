@@ -136,7 +136,7 @@ s3_response = s3.list_objects_v2(
 )
 ```
 
-## Automate Access Key Rotation
+## Automate Credential Rotation
 
 These instructions assume that you have an existing SRV account with access keys installed in your local AWS credentials file, which is typically stored at this path: `~/.aws/credentials`.
 
